@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Api.Domain.Entitites
 {
-    public class Detail:EntityBase
+    public class Detail : EntityBase
     {
         public Detail()
         {
