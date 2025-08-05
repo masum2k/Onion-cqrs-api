@@ -1,4 +1,6 @@
-﻿using Api.Persistence.Context;
+﻿using Api.Application.Interfaces.Repositories;
+using Api.Persistence.Context;
+using Api.Persistence.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
@@ -18,6 +20,8 @@ namespace Api.Persistence
             {
                 options.UseSqlServer(configuration.GetConnectionString("DefaultConnection"));
             });
+
+            services.AddScoped(typeof(IReadRepository<>), typeof(ReadRepository<>));
         }
     }
 }
