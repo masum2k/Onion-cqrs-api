@@ -7,6 +7,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
+//persistence 
+
 namespace Api.Persistence.Repositories
 {
     internal class WriteRepository<T> : IWriteRepository<T> where T : class, IEntityBase, new()
