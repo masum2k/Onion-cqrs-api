@@ -9,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Api.Persistence.Context
 {
-    internal class AppDbContext : DbContext
+    public class AppDbContext : DbContext
     {
         public AppDbContext()
         {
