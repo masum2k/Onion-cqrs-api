@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+//entity
 namespace Api.Domain.Entitites
 {
     public class Brand : EntityBase
