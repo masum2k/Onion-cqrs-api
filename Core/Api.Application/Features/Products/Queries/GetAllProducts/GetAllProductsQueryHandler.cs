@@ -28,7 +28,7 @@ namespace Api.Application.Features.Products.Queries.GetAllProducts
             //    Discount = p.Discount
             //}).ToList();
             //return response;
-
+            //
             List<GetAllProductsQueryResponse> response = new List<GetAllProductsQueryResponse>();
 
             foreach (var product in products) {
