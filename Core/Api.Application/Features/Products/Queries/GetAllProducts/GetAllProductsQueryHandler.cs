@@ -19,7 +19,7 @@ namespace Api.Application.Features.Products.Queries.GetAllProducts
         public async Task<IList<GetAllProductsQueryResponse>> Handle(GetAllProductsQueryRequest request, CancellationToken cancellationToken)
         {
             var products = await _unitOfWork.GetReadRepository<Product>().GetAllAsync();
-
+            //
             //var response = products.Select(p => new GetAllProductsQueryResponse
             //{
             //    Title = p.Title,
