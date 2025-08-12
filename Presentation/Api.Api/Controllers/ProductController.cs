@@ -20,5 +20,6 @@ namespace Api.Api.Controllers
             var response = await _mediator.Send(new GetAllProductsQueryRequest());
             return Ok(response);
         }
+        //
     }
 }
