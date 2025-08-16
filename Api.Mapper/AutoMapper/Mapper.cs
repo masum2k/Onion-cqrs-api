@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using AutoMapper.Internal;
 
-// //
-
 namespace Api.Mapper.AutoMapper
 {
     public class Mapper : Application.Interfaces.AutoMapper.IMapper
