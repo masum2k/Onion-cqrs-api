@@ -1,6 +1,9 @@
-﻿using Api.Application.Interfaces.UnitOfWorks;
+﻿using Api.Application.DTOs;
+using Api.Application.Interfaces.AutoMapper;
+using Api.Application.Interfaces.UnitOfWorks;
 using Api.Domain.Entitites;
 using MediatR;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,26 +14,21 @@ namespace Api.Application.Features.Products.Queries.GetAllProducts
 {
     public class GetAllProductsQueryHandler : IRequestHandler<GetAllProductsQueryRequest, IList<GetAllProductsQueryResponse>>
     {
-        private readonly IUnitOfWork _unitOfWork;
-        public GetAllProductsQueryHandler(IUnitOfWork unitOfWork)
+        private readonly IUnitOfWork unitOfWork;
+        private readonly IMapper mapper;
+
+        public GetAllProductsQueryHandler(IUnitOfWork unitOfWork, IMapper mapper)
         {
-            this._unitOfWork = unitOfWork;
+            this.unitOfWork = unitOfWork;
+            this.mapper = mapper;
         }
         public async Task<IList<GetAllProductsQueryResponse>> Handle(GetAllProductsQueryRequest request, CancellationToken cancellationToken)
         {
-            var products = await _unitOfWork.GetReadRepository<Product>().GetAllAsync();
-            //
-            //var response = products.Select(p => new GetAllProductsQueryResponse
-            //{
-            //    Title = p.Title,
-            //    Description = p.Description,
-            //    Price = p.Price,
-            //    Discount = p.Discount
-            //}).ToList();
-            //return response;
-            //
-            List<GetAllProductsQueryResponse> response = new List<GetAllProductsQueryResponse>();
+            var products = await unitOfWork.GetReadRepository<Product>().GetAllAsync(include:x=>x.Include(b => b.Brand));
 
+            var brand = mapper.Map<BrandDto,Brand>(new Brand());
+
+            /*
             foreach (var product in products) {
                 response.Add(new GetAllProductsQueryResponse
                 {
@@ -40,7 +38,13 @@ namespace Api.Application.Features.Products.Queries.GetAllProducts
                     Discount = product.Price - (product.Price * product.Discount / 100)
                 });
             }
-            return response;
+            */
+            var map = mapper.Map<GetAllProductsQueryResponse,Product>(products);
+            foreach (var item in map)
+            {
+                item.Price -= (item.Price * item.Discount / 100);
+            }
+            return map;
         }
     }
 }
