@@ -22,14 +22,14 @@ namespace Api.Mapper.AutoMapper
             return MapperContainer.Map<TDestination>(source);
         }
 
-        public IList<TDestination> MapList<TDestination, TSource>(IList<TSource> source, string? ignore = null)
+        public IList<TDestination> Map<TDestination, TSource>(IList<TSource> source, string? ignore = null)
         {
             Config<TDestination, TSource>(5, ignore);
 
             return MapperContainer.Map<IList<TSource>, IList<TDestination>>(source);
         }
 
-        public IList<TDestination> MapList<TDestination>(IList<object> source, string? ignore = null)
+        public IList<TDestination> Map<TDestination>(IList<object> source, string? ignore = null)
         {
             Config<TDestination, IList<object>>(5, ignore);
 
