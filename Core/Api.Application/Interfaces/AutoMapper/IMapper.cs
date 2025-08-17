@@ -4,8 +4,6 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-//
-
 namespace Api.Application.Interfaces.AutoMapper
 {
     public interface IMapper
