@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace Api.Application.Interfaces.AutoMapper
-{//
+{
     public interface IMapper
     {
         TDestination Map<TDestination, TSource>(TSource source,string? ignore=null);
