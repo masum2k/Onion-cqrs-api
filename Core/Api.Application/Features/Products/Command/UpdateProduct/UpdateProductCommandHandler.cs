@@ -30,7 +30,20 @@ namespace Api.Application.Features.Products.Command.UpdateProduct
             var productCategories = await unitOfWork.GetReadRepository<ProductCategory>()
                 .GetAllAsync(x => x.ProductId == products.Id);
 
+            await unitOfWork.GetWriteRepository<ProductCategory>()
+                .HardDeleteRangeAsync(productCategories);
+
+            foreach (var categoryId in request.CategoryIds)
+            {
+                await unitOfWork.GetWriteRepository<ProductCategory>().AddAsync(new()
+                {
+                    ProductId = products.Id,
+                    CategoryId = categoryId
+                });
+            }
+
             await unitOfWork.GetWriteRepository<Product>().UpdateAsync(map);
+            await unitOfWork.SaveAsync();
         }
 
     }
