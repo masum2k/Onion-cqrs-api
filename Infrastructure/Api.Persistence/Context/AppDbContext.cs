@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 
 namespace Api.Persistence.Context
 {
-    public class AppDbContext : IdentityDbContext<User,Role, Guid>
+    public class AppDbContext : IdentityDbContext<User,Role,Guid>
     {
         public AppDbContext()
         {
