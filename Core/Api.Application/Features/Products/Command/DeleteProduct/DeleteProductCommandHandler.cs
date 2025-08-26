@@ -1,6 +1,9 @@
-﻿using Api.Application.Interfaces.UnitOfWorks;
+﻿using Api.Application.Bases;
+using Api.Application.Interfaces.AutoMapper;
+using Api.Application.Interfaces.UnitOfWorks;
 using Api.Domain.Entitites;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using System;
 using System.Collections.Generic;
@@ -10,11 +13,11 @@ using System.Threading.Tasks;
 
 namespace Api.Application.Features.Products.Command.DeleteProduct
 {
-    public class DeleteProductCommandHandler : IRequestHandler<DeleteProductCommandRequest>
+    public class DeleteProductCommandHandler :BaseHandler, IRequestHandler<DeleteProductCommandRequest>
     {
         private readonly IUnitOfWork unitOfWork;
 
-        public DeleteProductCommandHandler(IUnitOfWork unitOfWork)
+        public DeleteProductCommandHandler(IMapper mapper, IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor) : base(mapper, unitOfWork, httpContextAccessor)
         {
             this.unitOfWork = unitOfWork;
         }

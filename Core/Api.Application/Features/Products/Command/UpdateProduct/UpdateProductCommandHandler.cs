@@ -1,7 +1,9 @@
-﻿using Api.Application.Interfaces.AutoMapper;
+﻿using Api.Application.Bases;
+using Api.Application.Interfaces.AutoMapper;
 using Api.Application.Interfaces.UnitOfWorks;
 using Api.Domain.Entitites;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -10,12 +12,12 @@ using System.Threading.Tasks;
 
 namespace Api.Application.Features.Products.Command.UpdateProduct
 {
-    public class UpdateProductCommandHandler : IRequestHandler<UpdateProductCommandRequest>
+    public class UpdateProductCommandHandler :BaseHandler, IRequestHandler<UpdateProductCommandRequest>
     {
         private readonly IUnitOfWork unitOfWork;
         private readonly IMapper mapper;
 
-        public UpdateProductCommandHandler(IUnitOfWork unitOfWork,IMapper mapper)
+        public UpdateProductCommandHandler(IMapper mapper, IUnitOfWork unitOfWork, IHttpContextAccessor httpContextAccessor) : base(mapper, unitOfWork, httpContextAccessor)
         {
             this.unitOfWork = unitOfWork;
             this.mapper = mapper;

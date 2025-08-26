@@ -27,11 +27,11 @@ namespace Api.Infrastructure
                 opt.SaveToken = true;
                 opt.TokenValidationParameters = new TokenValidationParameters()
                 {
-                    ValidateAudience = false,
-                    ValidateIssuer = false,
+                    ValidateAudience = true,
+                    ValidateIssuer = true,
                     ValidateIssuerSigningKey = true,
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(configuration["Jwt:Secret"])),
-                    ValidateLifetime = false, // We want to get claims from expired tokens as well
+                    ValidateLifetime = true, // We want to get claims from expired tokens as well
                     ValidIssuer = configuration["Jwt:Issuer"],
                     ValidAudience = configuration["Jwt:Audience"],
                     ClockSkew = TimeSpan.Zero
