@@ -15,5 +15,5 @@ namespace Api.Application
             var assembly = Assembly.GetExecutingAssembly();
             services.AddMediatR(cfg => cfg.RegisterServicesFromAssembly(assembly));
         }
-    }
+    }//
 }
