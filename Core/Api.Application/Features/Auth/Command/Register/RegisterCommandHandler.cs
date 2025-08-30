@@ -11,7 +11,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Api.Application.Features.Auth.Command.Register
+namespace Api.Application.Features.Auth.Command.Register//
 {
     public class RegisterCommandHandler : BaseHandler, IRequestHandler<RegisterCommandRequest, Unit>
     {
